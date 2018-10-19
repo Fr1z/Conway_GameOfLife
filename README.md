@@ -12,15 +12,14 @@ For an empty space:
     Each cell with exactly three neighbors becomes populated.
     
     
+    
+ WARNING:
+ the shared source may be incomplete and badly formatted / commented in some parts.
+ it is a temporary measure. it's a work in progress.
 
-WARNING:
-the shared source may be incomplete and badly formatted / commented in some parts.
-it is a temporary measure. it's a work in progress.
 
 
 Compile GUIDE
-  Requirements: gcc >= 4 && FLTK lib >= 1.3.4 
+Requirements: gcc >= 4 && FLTK lib >= 1.3.4 
 
-  g++ main.cpp -o game `fltk-config --ldflags` -std=c++11
-
-  ./game
+g++ main.cpp -o game `fltk-config --ldflags` -std=c++11
