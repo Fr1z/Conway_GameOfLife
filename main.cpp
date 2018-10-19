@@ -40,38 +40,6 @@ void cb_simulate(Fl_Widget *, void *)
 			world->step();
 		}
 
-	int GUIhandler(int event){
-
-			switch(event){
-				case FL_KEYDOWN:  //if event is key down
-					switch(Fl::event_key()) {
-						case FL_Escape: exit (1); break;  	// Esc key
-					}
-					return 1;
-					break;
-				case FL_KEYUP:  //if event is key down
-					switch(Fl::event_key()) {
-						case FL_Control_L:
-							//if simulation running..
-							if(world->editmode) 
-							{ 
-								world->editmode=false;
-								win->bt_simulate->value(0);
-							}else{ 
-								world->editmode=true; 
-								win->bt_simulate -> value(1);
-							}
-							
-							break;
-					}
-					return 1;
-					break;
-			
-			}
-		
-			return 0;
-
-	}
 
 
 int main() {
@@ -82,7 +50,7 @@ int main() {
 
 	int w{800}, h{640};
 
-	win = new Windows(w,h,"Fl test");
+	win = new Windows(w,h,"Game of Life");
 	world = new WorldContainer(w-8,h-40,_uw,_uh);
 	
 	world->gui=win;
@@ -90,9 +58,9 @@ int main() {
 	win->bt_edit->callback(cb_edit,0);
 	win->bt_step->callback(cb_step,0);
 	win->bt_clear->callback(cb_clear,0);
-
 	win->bt_simulate->callback(cb_simulate,0);
-	win->resizable(win);
+	//win->resizable(win);
+	
   	win->end();
   	win->show();
 	return Fl::run();
