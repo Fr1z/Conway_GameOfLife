@@ -15,7 +15,7 @@ Made using c++ and FLTK 1.3.4 library.
     
 ## WARNING:
 > the shared source may be incomplete and badly formatted / commented in some parts.
-> it is a temporary measure. it's a work in progress.
+> it is a temporary measure. work in progress.
 
 
 
