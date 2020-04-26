@@ -51,7 +51,7 @@ class WorldContainer : Fl_Widget {
 		//Creating game universe
 		Universe = new space(space_width,space_height);
 
-		//set limits to virtual spaace
+		//set limits to virtual space
 		x_min = -floor((space_width-1)/2);
 		x_max = floor(space_width/2);
 		y_min = -floor((space_height-1)/2);
