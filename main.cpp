@@ -1,4 +1,4 @@
-//For sleep thread
+// For sleep thread
 #ifdef _WIN32
 #include <Windows.h>
 #else
@@ -10,27 +10,25 @@
 #include "worldContainer.h"
 
 WorldContainer *world;
-Windows* win;
+Windows *win;
 
 static int keep_running = 0;
 
 /**
  * TO DO
- * 
-	draw  pos text by widget of a gui
-	fix pos near 0,0
-	button simulate 
-	slider speed (timer based)
-	resize 
+ *
+	fix view near 0,0
+	resizing
 	speed up drawing using a variable for scaling (avoiding scale*cdim every time)
 	consider to use surface for drawing
 */
-void* thread_task(void* p) {
+void *thread_task(void *p)
+{
 	long id = (long)p;
-	//printf("Start thread %ld\n", id); fflush(stdout);
 
-	while(keep_running) {
-		Sleep(500);// delay for a second
+	while (keep_running)
+	{
+		Sleep(500); // delay for a half-second
 		if (world->getspace()->alive())
 			world->step();
 	}
@@ -38,38 +36,39 @@ void* thread_task(void* p) {
 }
 
 void cb_edit(Fl_Widget *, void *)
-		{
-			(world->editmode) ? world->editmode=false : world->editmode=true;	
-		}
+{
+	(world->editmode) ? world->editmode = false : world->editmode = true;
+}
 
 void cb_step(Fl_Widget *, void *)
-		{
-			if (world->getspace()->alive())
-				world->step();
-			////std::cout << "hey callback" << std::endl;
-		}
+{
+	if (world->getspace()->alive())
+		world->step();
+}
 
 void cb_clear(Fl_Widget *, void *)
-		{
-			world->getspace()->clear();
-			world->update();
-		}
+{
+	world->getspace()->clear();
+	world->update();
+}
 
 void cb_simulate(Fl_Widget *, void *)
-		{
-			if (keep_running==0){
-				keep_running=1;
-				Fl_Thread thread_id;
-				static int active_thrds = 1;
-				fl_create_thread(thread_id, thread_task, (void *)active_thrds);
-			}else{
-				keep_running=0;
-			}
-		}
+{
+	if (keep_running == 0)
+	{
+		keep_running = 1;
+		Fl_Thread thread_id;
+		static int active_thrds = 1;
+		fl_create_thread(thread_id, thread_task, (void *)active_thrds);
+	}
+	else
+	{
+		keep_running = 0;
+	}
+}
 
-
-
-int main() {
+int main()
+{
 
 	long generation = 0;
 	long _uw = 256;
@@ -77,23 +76,18 @@ int main() {
 
 	int w{800}, h{640};
 
-	win = new Windows(w,h,"Game of Life");
-	world = new WorldContainer(w-8,h-40,_uw,_uh);
-	
-	world->gui=win;
+	win = new Windows(w, h, "Game of Life");
+	world = new WorldContainer(w - 8, h - 40, _uw, _uh);
 
-	win->bt_edit->callback(cb_edit,0);
-	win->bt_step->callback(cb_step,0);
-	win->bt_clear->callback(cb_clear,0);
-	win->bt_simulate->callback(cb_simulate,0);
+	world->gui = win;
 
-	
-  	win->end();
-  	win->show();
+	win->bt_edit->callback(cb_edit, 0);
+	win->bt_step->callback(cb_step, 0);
+	win->bt_clear->callback(cb_clear, 0);
+	win->bt_simulate->callback(cb_simulate, 0);
 
- 
+	win->end();
+	win->show();
+
 	return Fl::run();
-
 }
-
-	

@@ -11,15 +11,11 @@ Made using c++ and FLTK 1.3.4 library.
 #### For an empty space:
   - Each cell with exactly three neighbors becomes populated.
     
-    
-    
-## WARNING:
-> the shared source may be incomplete and badly formatted / commented in some parts.
-> it is a temporary measure. work in progress.
 
-
-
-### Compile GUIDE
+### Compilation
 > Requirements: gcc >= 4 && FLTK lib >= 1.3.4 
 
 g++ main.cpp -o game `fltk-config --ldflags` -std=c++11
+
+
+*Project done for learning C / FLTK purpose, if you looking for "quality code" pls look away*
